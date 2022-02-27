@@ -1,3 +1,4 @@
+#Данила Лынник 65% #Матвей Лысенко 50% #Денис Ячин 30%
 from textblob import TextBlob
 
 text = input()
@@ -5,7 +6,7 @@ sentences = text.count('.') + text.count('?') + text.count('!')
 words = text.count(' ') + 1
 syllables = 0
 blob = TextBlob(text)
-if 97 <= ord(text[0].lower()) <= 122:
+if 97 <= ord(text[0].lower()) <= 122: #Определение языка с помощью таблицы UNICODE
     vowels_en = ['a', 'e', 'i', 'o', 'u', 'y']
     for letter in vowels_en:
         syllables += (text.lower()).count(letter)
@@ -34,11 +35,11 @@ print('Средняя длина предложения в словах:',ASL)
 print('Средняя длина слова в слогах:',ASW)
 print('Индекс удобочитаемости Флеша:',FRE)
 print(difficulty)
-if 97 <= ord(text[0].lower()) <= 122:
-    analysisPol = blob.polarity
+if 97 <= ord(text[0].lower()) <= 122: #Определение языка по той же схеме
+    analysisPol = blob.polarity #Подсчет полярности и объективности исходя из того, что текст не нуждается в переводе
     analysisSub = blob.subjectivity
 else:
-    final = blob.translate(to='en')
+    final = blob.translate(to='en') #Перевод русского текста на английский язык для подсчета полярности
     analysisPol = final.polarity
     analysisSub = final.subjectivity
 if analysisPol > 0.5:
